@@ -283,43 +283,6 @@ docker_for_developers_linkedIn/
 |   |-- data/                 # MongoDB data
 ```
 
-### Docker Architecture Diagram
-
-```mermaid
-graph TD
-    subgraph "Fullstack Application"
-        DC[docker-compose.yml] --> |orchestrates| API
-        DC --> |orchestrates| Client
-        DC --> |orchestrates| MongoDB
-        
-        subgraph "Backend API"
-            API[api/Dockerfile] --> |runs| NodeJS
-            NodeJS --> |connects to| MongoDB
-        end
-        
-        subgraph "Frontend Client"
-            Client[client/Dockerfile] --> |runs| React
-            React --> |requests to| NodeJS
-        end
-    end
-    
-    subgraph "Standalone Backend"
-        BDC[backend/docker-compose.yml] --> |orchestrates| BNode
-        BDC --> |orchestrates| BMongo
-        
-        BNode[backend/Dockerfile] --> |runs| Express
-        Express --> |connects to| BMongo
-    end
-    
-    subgraph "Standalone Frontend"
-        FNode[frontend/Dockerfile] --> |runs| ReactApp
-    end
-    
-    subgraph "Simple Backend"
-        SNode[simple-backend] --> |runs| SimpleExpress
-    end
-```
-
 <div align="center">
 
 ## 📚 Resources
