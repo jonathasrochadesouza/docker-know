@@ -13,7 +13,6 @@ A comprehensive guide to Docker commands and configurations for various applicat
 - [Backend Commands](#-backend-commands)
 - [Frontend Commands](#-frontend-commands)
 - [Fullstack with Docker Compose](#-fullstack-with-docker-compose)
-- [Simple Projects](#-simple-projects)
 - [Project Architecture](#-project-architecture)
 - [Resources](#-resources)
 
@@ -29,7 +28,6 @@ The project includes:
 - Backend service with Node.js and MongoDB
 - Frontend application with React
 - Fullstack setup with Docker Compose
-- Simple backend implementation examples
 
 Each component has its own Dockerfile and configuration, demonstrating best practices for containerizing web applications.
 
@@ -49,7 +47,7 @@ Docker Hub website for searching images: [https://hub.docker.com/](https://hub.d
 
 <div align="center">
 
-## 🔙 Backend Commands
+## 🖥️ Backend Commands
 
 </div>
 
@@ -165,7 +163,7 @@ docker kill <container_id>
 
 <div align="center">
 
-## 🔄 Fullstack with Docker Compose
+## 🖥️ Fullstack with Docker Compose Commands
 
 </div>
 
@@ -283,9 +281,6 @@ docker_for_developers_linkedIn/
 |   |   |-- Dockerfile        # Client container configuration
 |   |   |-- package.json      # Node.js dependencies
 |   |-- data/                 # MongoDB data
-|
-|-- simple-backend/           # Simple backend example
-    |-- README.md             # Simple backend documentation
 ```
 
 ### Docker Architecture Diagram
