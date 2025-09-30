@@ -1,18 +1,20 @@
+
 <div align="center">
 
 # 🐳 Docker for Developers
 
 A comprehensive guide to Docker commands and configurations for various application components
 
-</div>
 
 ## 📋 Table of Contents
 
+
+</div>
+
 - [Summary](#-summary)
 - [Introduction](#-introduction)
-- [Backend Commands](#-backend-commands)
-- [Frontend Commands](#-frontend-commands)
-- [Fullstack with Docker Compose](#-fullstack-with-docker-compose)
+- [Essential Docker Commands](#-essential-docker-commands)
+- [Docker Compose Commands](#-docker-compose-commands)
 - [Project Architecture](#-project-architecture)
 - [Resources](#-resources)
 
@@ -22,7 +24,7 @@ A comprehensive guide to Docker commands and configurations for various applicat
 
 </div>
 
-This repository contains Docker configurations and commands for various application components including backend services, frontend applications, and fullstack setups. It provides a practical guide for containerizing different parts of a web application using Docker and Docker Compose.
+This repository contains Docker configurations and commands for various application components, including backend services, frontend applications, and fullstack setups. It provides a practical guide for containerizing different parts of a web application using Docker and Docker Compose.
 
 The project includes:
 - Backend service with Node.js and MongoDB
@@ -41,103 +43,75 @@ Docker is a platform for developing, shipping, and running applications in conta
 
 > **Note:** When working with Docker, always start by finding an appropriate base image on Docker Hub that matches your application's requirements.
 
-The first step in creating a Dockerfile is to look for a base image on Docker Hub and copy the specific name. This allows you to start from an image tailored to your framework (like Spring), simplifying the setup process.
+The first step in creating a Dockerfile is to look for a base image on Docker Hub and copy the specific name.
 
 Docker Hub website for searching images: [https://hub.docker.com/](https://hub.docker.com/)
 
 <div align="center">
 
-## 🖥️ Backend Commands
+## 🖥️ Essential Docker Commands
 
 </div>
 
+This section covers fundamental Docker commands for building, managing, and running containers and images.
+
 ### Build an Image
 
+Use this command to build a Docker image from a Dockerfile in the current directory. Replace `[image_name]` with your desired image name.
+
+```bash
+docker build -t [image_name] .
+```
+
+Example for backend:
 ```bash
 docker build -t jonathasrochadesouza/backend .
 ```
 
-### List Images
-
-```bash
-docker images
-```
-
-### Run a Container
-
-```bash
-docker run -p 4000:4000 jonathasrochadesouza/backend
-```
-
-To free console CLI, add flag '-d'
-```bash
-docker run -d -p 4000:4000 jonathasrochadesouza/backend
-```
-
-If error because version
-```bash
-docker run -e "NODE_OPTIONS=--openssl-legacy-provider" -p 4000:4000 jonathasrochadesouza/backend
-```
-
-### Check Running Containers
-
-```bash
-docker ps
-```
-
-### Stop a Container
-
-```bash
-docker stop <container_id>
-```
-
-### Remove an Image
-
-```bash
-docker rmi <image_id>
-```
-
-### Force Stop a Container and kill image
-
-```bash
-docker kill <container_id>
-```
-
-<div align="center">
-
-## 🖥️ Frontend Commands
-
-</div>
-
-### Build an Image
-
+Example for frontend:
 ```bash
 docker build -t jonathasrochadesouza/frontend .
 ```
 
 ### List Images
 
+Displays all locally available Docker images.
+
 ```bash
 docker images
 ```
 
 ### Run a Container
 
+Starts a new container from an image. The `-p` flag maps ports (host:container), and `-d` runs the container in the background (detached mode).
+
+```bash
+docker run -p [host_port]:[container_port] [image_name]
+```
+
+To free the console CLI, add the `-d` flag:
+```bash
+docker run -d -p [host_port]:[container_port] [image_name]
+```
+
+If an error occurs due to version (e.g., Node.js):
+```bash
+docker run -e "NODE_OPTIONS=--openssl-legacy-provider" -p [host_port]:[container_port] [image_name]
+```
+
+Example for backend:
+```bash
+docker run -p 4000:4000 jonathasrochadesouza/backend
+```
+
+Example for frontend:
 ```bash
 docker run -p 3000:3000 jonathasrochadesouza/frontend
 ```
 
-To free console CLI, add flag '-d'
-```bash
-docker run -d -p 3000:3000 jonathasrochadesouza/frontend
-```
-
-If error because version
-```bash
-docker run -e "NODE_OPTIONS=--openssl-legacy-provider" -p 3000:3000 jonathasrochadesouza/frontend
-```
-
 ### Check Running Containers
+
+Lists all currently running Docker containers.
 
 ```bash
 docker ps
@@ -145,55 +119,58 @@ docker ps
 
 ### Stop a Container
 
+Stops a running container using its ID or name.
+
 ```bash
-docker stop <container_id>
+docker stop <container_id_or_name>
 ```
 
 ### Remove an Image
 
+Removes a Docker image. Ensure no containers are using the image before removing it.
+
 ```bash
-docker rmi <image_id>
+docker rmi <image_id_or_name>
 ```
 
-### Force Stop a Container and Kill Image
+### Force Stop a Container and Remove Image
+
+Forces a container to stop and, if necessary, removes the associated image.
 
 ```bash
-docker kill <container_id>
+docker kill <container_id_or_name>
 ```
 
 <div align="center">
 
-## 🖥️ Fullstack with Docker Compose Commands
+## 🖥️ Docker Compose Commands
 
 </div>
 
-### Build an Image (compose)
+This section details commands for managing multi-container applications using Docker Compose.
+
+### Build Images (Compose)
+
+Builds or rebuilds services defined in `docker-compose.yml`.
 
 For all services:
 ```bash
 docker-compose build
 ```
 
-For individual services:
+For individual services (e.g., `mongo`, `app`, `client`):
 ```bash
-docker-compose build -d mongo
+docker-compose build [service_name]
 ```
 
+Example:
 ```bash
-docker-compose build -d app
+docker-compose build mongo
 ```
 
-```bash
-docker-compose build -d client
-```
+### Start Services (Compose)
 
-### List Images
-
-```bash
-docker images
-```
-
-### Run a Container
+Creates and starts containers for all services defined in `docker-compose.yml`. The `-d` flag runs in the background.
 
 For all services:
 ```bash
@@ -202,39 +179,42 @@ docker-compose up -d
 
 For individual services:
 ```bash
-docker-compose up -d mongo
+docker-compose up -d [service_name]
 ```
 
+Example:
 ```bash
 docker-compose up -d app
 ```
 
+### Stop Services (Compose)
+
+Stops running services without removing the containers.
+
 ```bash
-docker-compose up -d client
+docker-compose stop
 ```
 
-### Check Running Containers
+### Stop and Remove Services (Compose)
+
+Stops and removes containers, networks, and volumes created by `up`.
 
 ```bash
-docker ps
+docker-compose down
 ```
 
-### Stop a Container
+### View Logs (Compose)
 
+Displays logs for all services or a specific service.
+
+For all services:
 ```bash
-docker stop <container_id>
+docker-compose logs
 ```
 
-### Remove an Image
-
+For a specific service:
 ```bash
-docker rmi <image_id>
-```
-
-### Force Stop a Container and Kill Image
-
-```bash
-docker kill <container_id>
+docker-compose logs [service_name]
 ```
 
 <div align="center">
@@ -289,12 +269,12 @@ docker_for_developers_linkedIn/
 
 </div>
 
-#### Docker CLI References
+### Docker CLI References
 
 For more detailed information about Docker commands, visit the official Docker CLI documentation:
 [https://docs.docker.com/reference/cli/docker/](https://docs.docker.com/reference/cli/docker/)
 
-#### Docker searching images
+### Docker Image Search
 
 Docker Hub website for searching images: [https://hub.docker.com/](https://hub.docker.com/)
 
@@ -302,6 +282,7 @@ Docker Hub website for searching images: [https://hub.docker.com/](https://hub.d
 
 <div align="center">
 
-*Study with love from Jonathas* ❤️
+*From Jonathas* 🤎
 
 </div>
+
