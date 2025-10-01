@@ -5,9 +5,7 @@
 
 A comprehensive guide to Docker commands and configurations for various application components
 
-
 ## 📋 Table of Contents
-
 
 </div>
 
@@ -15,6 +13,7 @@ A comprehensive guide to Docker commands and configurations for various applicat
 - [Introduction](#-introduction)
 - [Essential Docker Commands](#-essential-docker-commands)
 - [Docker Compose Commands](#-docker-compose-commands)
+- [Essential about Swarm](#-swarm)
 - [Project Architecture](#-project-architecture)
 - [Resources](#-resources)
 
@@ -216,6 +215,12 @@ For a specific service:
 ```bash
 docker-compose logs [service_name]
 ```
+
+<div align="center">
+
+## 👨🏾‍💻 Swarm
+
+</div>
 
 <div align="center">
 
