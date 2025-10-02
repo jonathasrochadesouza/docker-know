@@ -15,6 +15,10 @@ A comprehensive guide to Docker commands and configurations for various applicat
 | Docker | [Essential Docker Commands](#-essential-docker-commands) | Docker commands |
 | Docker | [Docker Compose Commands](#-docker-compose-commands) | Docker commands |
 | Swarm | [Overview of Swarm](#-overview-of-swarm) | Started Swarm |
+| Swarm | [Commands of Swarm](#-commands-of-swarm) | Swarm commands |
+| K8S | [Overview of Kubernetes](#-overview-of-kubernetes) | Started K8S |
+| K8S | [Installing K8S](#-installing-k8s) | K8S commands |
+| K8S | [Commands of Kubernetes](#-commands-of-kubernetes) | K8S commands |
 | Project | [Project Architecture](#-project-architecture) | |
 | Project | [Resources](#-resources) | |
 
@@ -251,9 +255,93 @@ docker-compose logs [service_name]
 
 Docker Swarm is Docker's native orchestration tool, designed to group and manage multiple hosts (called nodes) into a single, cohesive cluster. As the default solution, it comes installed and enabled by default with Docker.
 
-The primary feature of Swarm is the creation of an overlay network that connects all nodes. This allows containers, even if running on different physical machines, to communicate transparently and securely as if they were on the same local network.
+The primary feature of Swarm is the creation of an overlay network that connects all nodes. This allows containers, even if running on different physical machines, to communicate transparently and securely as if they were on the same local network. Nodes can connect to each other. A container within a node can connect to a container on another node.
 
-Nodes can connect to each other. A container within a node can connect to a container on another node.
+SSH into the new machine, use the join command that was displayed when the swarm was initialized to join the new node to the swarm, and then deploy the stack using the Docker compose file.
+
+## 👨🏾‍💻 Commands of Swarm
+
+Initializes a new swarm. This command sets up your current machine as the manager node of the swarm.
+```bash
+docker swarm init
+```
+
+Provides detailed information about your Docker installation, including the status of the swarm, containers, and images.
+```bash
+docker info
+```
+
+Lists all the nodes in the swarm, showing their IDs and roles (e.g., manager or worker).
+```bash
+docker node ls
+```
+
+**These commands above help you set up and manage a Docker swarm, which is a cluster of Docker nodes that can be used to deploy and manage applications.**
+
+Deploys a new stack to the swarm using the specified Docker Compose file. This command sets up the services defined in the compose file within the swarm.
+```bash
+docker stack deploy -c docker-compose.yml <stack_name>
+```
+
+Adds a new node to the swarm. This command is run on the machine you want to add as a worker or manager node, using the token and manager IP address provided when the swarm was initialized.
+```bash
+docker swarm join --token <token> <manager_ip>:<port>
+```
+
+**These commands above help you manage and expand your Docker swarm by adding new nodes and deploying services.**
+
+Creates a new service in the swarm with one replica. The service is named node_server2 and uses the node image from Docker Hub.
+```bash
+docker service create --replicas 1 --name nodeserver2 node ping docker.com
+```
+
+Lists all the services currently running in the swarm, showing their names, IDs, and statuses.
+```bash
+docker service ls
+```
+
+**These commands help you deploy and manage services within a Docker swarm, allowing you to scale and inspect your applications efficiently.**
+
+<div align="center">
+
+## 🗃️ Overview of Kubernetes
+
+</div>
+
+* Tool for container orchestration.
+* Built by Google and open-sourced.
+* More extensible compared to Docker Swarm.
+* Same concepts of nodes.
+
+Features:
+
+* Clustering
+* Scaling
+* Scheduling
+* Deployment
+
+Nodes:
+
+* Uses the concept of nodes to manage multiple containers.
+* Can scale to thousands of nodes if needed.
+
+Comparison with Docker Swarm:
+
+* Swarm is tightly integrated with Docker.
+* Kubernetes is more customizable and an industry standard.
+
+## 📥 Installing K8S
+
+Access Documentation: Visit the Kubernetes website (kubernetes.io), go to the documentation section, and navigate to the "Download Kubernetes" page.
+
+Installation: For macOS, use Homebrew by running the command `brew install kubectl`
+
+Verification: Verify the installation by running `kubectl version --client` to check the version and ensure it is installed correctly.
+
+Minikube Installation: Install Minikube using Homebrew with the command `brew install minikube`.
+
+Next Steps: With Kubernetes and Minikube installed, you can start using them in your local system for testing and development.
+
 
 <div align="center">
 
