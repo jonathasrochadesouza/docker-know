@@ -5,18 +5,20 @@
 
 A comprehensive guide to Docker commands and configurations for various application components
 
-
 ## 📋 Table of Contents
 
+| About | Contents | Description |
+|---|---|---|
+| Project | [Summary](#-summary) | |
+| Docker | [Introduction](#-introduction) | |
+| Docker | [Docker Principles](#-docker-principles) | Four principles of docker |
+| Docker | [Essential Docker Commands](#-essential-docker-commands) | Docker commands |
+| Docker | [Docker Compose Commands](#-docker-compose-commands) | Docker commands |
+| Swarm | [Overview of Swarm](#-overview-of-swarm) | Started Swarm |
+| Project | [Project Architecture](#-project-architecture) | |
+| Project | [Resources](#-resources) | |
 
 </div>
-
-- [Summary](#-summary)
-- [Introduction](#-introduction)
-- [Essential Docker Commands](#-essential-docker-commands)
-- [Docker Compose Commands](#-docker-compose-commands)
-- [Project Architecture](#-project-architecture)
-- [Resources](#-resources)
 
 <div align="center">
 
@@ -46,6 +48,30 @@ Docker is a platform for developing, shipping, and running applications in conta
 The first step in creating a Dockerfile is to look for a base image on Docker Hub and copy the specific name.
 
 Docker Hub website for searching images: [https://hub.docker.com/](https://hub.docker.com/)
+
+<div align="center">
+
+## 🌴 Docker Principles
+
+</div>
+
+Docker has four principles.
+
+### 1. Image 💿
+
+An image refers to the configuration of a container, it is the base image to run the container. The image contains the configuration base and/or an application and its entire environment.
+
+### 2. Container 🧰
+
+A container is the coupled image running in execution, and can be accessed.
+
+### 3. Newtwork 🛜
+
+It is the network used by the application running in the container, this includes the port and the docker network settings created for the application to run on top.
+
+### 4. Volume 🎲
+
+A volume refers to a data allocation created and managed by Docker. It is not deleted when deleting a container or image. Volumes can be created for databases, file storage, or similar purposes for running containers.
 
 <div align="center">
 
@@ -219,6 +245,18 @@ docker-compose logs [service_name]
 
 <div align="center">
 
+## 📦 Overview of Swarm
+
+</div>
+
+Docker Swarm is Docker's native orchestration tool, designed to group and manage multiple hosts (called nodes) into a single, cohesive cluster. As the default solution, it comes installed and enabled by default with Docker.
+
+The primary feature of Swarm is the creation of an overlay network that connects all nodes. This allows containers, even if running on different physical machines, to communicate transparently and securely as if they were on the same local network.
+
+Nodes can connect to each other. A container within a node can connect to a container on another node.
+
+<div align="center">
+
 ## 🏗️ Project Architecture
 
 </div>
@@ -269,6 +307,11 @@ docker_for_developers_linkedIn/
 
 </div>
 
+### Docker Install and Started
+
+Visit the official Docker documentation:
+[https://www.docker.com/get-started/](https://www.docker.com/get-started/)
+
 ### Docker CLI References
 
 For more detailed information about Docker commands, visit the official Docker CLI documentation:
@@ -276,7 +319,8 @@ For more detailed information about Docker commands, visit the official Docker C
 
 ### Docker Image Search
 
-Docker Hub website for searching images: [https://hub.docker.com/](https://hub.docker.com/)
+Docker Hub website for searching images:
+[https://hub.docker.com/](https://hub.docker.com/)
 
 ---
 
