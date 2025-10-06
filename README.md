@@ -19,7 +19,6 @@ A comprehensive guide to Docker commands and configurations for various applicat
 | K8S | [Overview of Kubernetes](#-overview-of-kubernetes) | Started K8S |
 | K8S | [Installing K8S](#-installing-k8s) | Installing Kubernetes on macOS |
 | K8S | [Deploy to the cluster](#-deploy-to-the-cluster) | Deploy to the cluster |
-| K8S | [Commands of Kubernetes](#-commands-of-kubernetes) | K8S commands |
 | Project | [Project Architecture](#-project-architecture) | |
 | Project | [Resources](#-resources) | |
 
