@@ -330,8 +330,10 @@ Comparison with Docker Swarm:
 * Swarm is tightly integrated with Docker.
 * Kubernetes is more customizable and an industry standard.
 
+<div align="center">
 ## 📥 Installing K8S
-
+</div>
+  
 ### 1. Homebrew
 
 To install Kubernetes on macOS, you can use a tool like Minikube or Docker Desktop, which simplifies the process. Here’s a general outline of the steps you can follow:
