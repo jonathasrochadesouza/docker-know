@@ -331,7 +331,9 @@ Comparison with Docker Swarm:
 * Kubernetes is more customizable and an industry standard.
 
 <div align="center">
+  
 ## 📥 Installing K8S
+
 </div>
   
 ### 1. Homebrew
@@ -396,9 +398,9 @@ All have allows flag `--help`, for show all commands and obtain helping!
 
 ## 👨🏾‍💻  Deploy to the cluster
 
-### 1. Creating your first cluster
-
 </div>
+
+### 1. Creating your first cluster
 
 Start Minikube:
 ```bash
