@@ -17,7 +17,8 @@ A comprehensive guide to Docker commands and configurations for various applicat
 | Swarm | [Overview of Swarm](#-overview-of-swarm) | Started Swarm |
 | Swarm | [Commands of Swarm](#-commands-of-swarm) | Swarm commands |
 | K8S | [Overview of Kubernetes](#-overview-of-kubernetes) | Started K8S |
-| K8S | [Installing K8S](#-installing-k8s) | K8S commands |
+| K8S | [Installing K8S](#-installing-k8s) | Installing Kubernetes on macOS |
+| K8S | [Deploy to the cluster](#-deploy-to-the-cluster) | Deploy to the cluster |
 | K8S | [Commands of Kubernetes](#-commands-of-kubernetes) | K8S commands |
 | Project | [Project Architecture](#-project-architecture) | |
 | Project | [Resources](#-resources) | |
@@ -332,16 +333,118 @@ Comparison with Docker Swarm:
 
 ## 📥 Installing K8S
 
-Access Documentation: Visit the Kubernetes website (kubernetes.io), go to the documentation section, and navigate to the "Download Kubernetes" page.
+### 1. Homebrew
 
-Installation: For macOS, use Homebrew by running the command `brew install kubectl`
+To install Kubernetes on macOS, you can use a tool like Minikube or Docker Desktop, which simplifies the process. Here’s a general outline of the steps you can follow:
 
-Verification: Verify the installation by running `kubectl version --client` to check the version and ensure it is installed correctly.
+Install Homebrew: If you haven't already, install Homebrew, which is a package manager for macOS. You can do this by running the following command in your terminal:
 
-Minikube Installation: Install Minikube using Homebrew with the command `brew install minikube`.
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
-Next Steps: With Kubernetes and Minikube installed, you can start using them in your local system for testing and development.
+### 2. Kubectl
 
+Install kubectl: This is the command-line tool for interacting with Kubernetes. You can install it using Homebrew as well:
+
+```bash
+brew install kubectl
+```
+
+Verify Installation: After installation, you can verify that everything is working by running:
+
+```bash
+kubectl version --client
+```
+
+### 3. Minikube
+
+Install Minikube: Use Homebrew to install Minikube:
+
+```bash
+brew install minikube
+```
+
+Verify Installation: After installation, you can verify that everything is working by running:
+
+```bash
+minikube version
+```
+
+Start Minikube: Once installed, you can start Minikube with:
+
+```bash
+minikube start
+```
+
+Access the Kubernetes Dashboard: If you want to access the Kubernetes dashboard, you can enable it with:
+
+```bash
+minikube dashboard
+```
+
+### About installations
+
+Minikube: A tool that creates a single-node Kubernetes cluster on your local machine for learning and development purposes.
+
+Kubectl: A command-line interface (CLI) used to run commands and manage resources within a Kubernetes cluster.
+
+All have allows flag `--help`, for show all commands and obtain helping!
+
+<div align="center">
+
+## 👨🏾‍💻  Deploy to the cluster
+
+### 1. Creating your first cluster
+
+</div>
+
+Start Minikube:
+```bash
+minikube start
+```
+
+This command initializes and starts your first Kubernetes cluster using Minikube. It might take longer if you don't have all the necessary images downloaded.
+
+Check Cluster Info:
+```bash
+kubectl cluster-info
+```
+
+This command provides information about the cluster, including the control plane (master) and CoreDNS, confirming that your cluster is up and running.
+
+Verify Control Plane:
+
+The output will include the IP address of the control plane, which you can use to SSH into the cluster or add services.
+
+### Deploy to the cluster
+
+Create Deployment:
+```bash
+kubectl create deployment <deploy-name-here> --image=<image_here>
+```
+
+This command creates a new deployment in the Kubernetes cluster. For example, to create a deployment named nodeapplication using the Node.js image, you would use:
+```bash
+kubectl create deployment nodeapplication --image=node
+```
+
+Specify Image:
+
+When creating a deployment, you can specify the image from Docker Hub or any other repository by providing the full URL. For example:
+
+```bash
+kubectl create deployment nodeapplication --image=docker.io/library/node
+```
+
+Check Deployments:
+```bash
+kubectl get deployments
+```
+
+This command lists all the deployments in your cluster, showing the status of each deployment.
+
+These commands help you deploy an application to your Kubernetes cluster and verify its deployment.
 
 <div align="center">
 
